@@ -2,7 +2,11 @@
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
     </a>
+<<<<<<< HEAD
     <h1 align="center">Yii 2 Basic Project Template SARWAN - coba git fork branch</h1>
+=======
+    <h1 align="center">Yii 2 Basic Skripsi e-Learning Riski</h1>
+>>>>>>> 8596c6c... rubah readme 100x
     <br>
 </p>
 
