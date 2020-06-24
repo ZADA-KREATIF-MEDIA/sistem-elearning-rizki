@@ -11,7 +11,7 @@ $this->title = 'E-LEARNING';
   
           <div class="tile_count">
             <div class="col-md-3 col-sm-6  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Jumlah Siswa</span>
+              <span class="count_top"><i class="fa fa-user"></i> dJumlah Siswa</span>
               <div class="count">234</div>
               <span class="count_bottom">Siswa<i class="green"> Aktif</i></span>
             </div>
