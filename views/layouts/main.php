@@ -55,15 +55,15 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                 "items" => [
                                     ["label" => "Beranda", "url" => "/", "icon" => "home"],
                                     ["label" => "Data Kelas", "url" => ["site/layout"], "icon" => "files-o"],
-                                    ["label" => "Data Mata Pelajaran", "url" => ["site/layout"], "icon" => "files-o"],
+                                    ["label" => "Data Mata Pelajaran", "url" => ["mata-pelajaran/"], "icon" => "files-o"],
                                     ["label" => "Data Tugas", "url" => ["site/layout"], "icon" => "files-o"],
                                     [
                                         "label" => "Pengguna",
                                         "icon" => "th",
                                         "url" => "#",
                                         "items" => [
-                                            ["label" => "Data Siswa", "url" => ["site/menu"]],
-                                            ["label" => "Data Guru", "url" => ["site/panel"]],
+                                            ["label" => "Data Siswa", "url" => ["siswa/"]],
+                                            ["label" => "Data Guru", "url" => ["/"]],
                                         ],
                                     ],
                                  
