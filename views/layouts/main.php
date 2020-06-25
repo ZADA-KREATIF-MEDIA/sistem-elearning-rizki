@@ -63,7 +63,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                         "url" => "#",
                                         "items" => [
                                             ["label" => "Data Siswa", "url" => ["siswa/"]],
-                                            ["label" => "Data Guru", "url" => ["/"]],
+                                            ["label" => "Data Guru", "url" => ["guru/"]],
                                         ],
                                     ],
                                  
