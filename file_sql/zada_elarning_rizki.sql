@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2020-06-24 23:34:29
+Date: 2020-06-25 13:02:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -118,7 +118,10 @@ CREATE TABLE `tugas` (
   `id_tugas` int(11) NOT NULL AUTO_INCREMENT,
   `id_mapel` int(11) NOT NULL,
   `nama_tugas` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_tugas`)
+  `tanggal_upload` date NOT NULL,
+  `nama_file` varchar(25) NOT NULL,
+  PRIMARY KEY (`id_tugas`),
+  CONSTRAINT `FK_MAPEL_TUGAS` FOREIGN KEY (`id_tugas`) REFERENCES `mata_pelajaran` (`id_mapel`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
