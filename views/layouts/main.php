@@ -54,7 +54,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                             [
                                 "items" => [
                                     ["label" => "Beranda", "url" => "/", "icon" => "home"],
-                                    ["label" => "Data Kelas", "url" => ["site/layout"], "icon" => "files-o"],
+                                    ["label" => "Data Kelas", "url" => ["kelas/"], "icon" => "files-o"],
                                     ["label" => "Data Mata Pelajaran", "url" => ["mata-pelajaran/"], "icon" => "files-o"],
                                     ["label" => "Data Tugas", "url" => ["site/layout"], "icon" => "files-o"],
                                     [
