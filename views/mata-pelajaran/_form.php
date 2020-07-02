@@ -28,7 +28,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nama_mapel')->textInput(['maxlength' => true]) ?>
 
-    <!--pembuatan dropdown list guru->
+    <!--pembuatan dropdown list guru-->
     <?= $form->field($model, 'id_guru')->dropDownList(
     	ArrayHelper::map(Guru::find()->all(),'nip','nama'),
     	['prompt'=>'--Silahkan Pilih Guru --']
