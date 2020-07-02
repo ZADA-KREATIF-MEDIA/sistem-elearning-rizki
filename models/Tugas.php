@@ -13,7 +13,7 @@ use Yii;
  * @property string $tanggal_upload
  * @property string $nama_file
  *
- * @property MataPelajaran $tugas
+ * @property MataPelajaran $mapel
  * @property TugasDetail[] $tugasDetails
  */
 class Tugas extends \yii\db\ActiveRecord
@@ -37,7 +37,7 @@ class Tugas extends \yii\db\ActiveRecord
             [['tanggal_upload'], 'safe'],
             [['nama_tugas'], 'string', 'max' => 50],
             [['nama_file'], 'string', 'max' => 25],
-            [['id_tugas'], 'exist', 'skipOnError' => true, 'targetClass' => MataPelajaran::className(), 'targetAttribute' => ['id_tugas' => 'id_mapel']],
+            [['id_mapel'], 'exist', 'skipOnError' => true, 'targetClass' => MataPelajaran::className(), 'targetAttribute' => ['id_mapel' => 'id_mapel']],
         ];
     }
 
@@ -56,13 +56,13 @@ class Tugas extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Tugas]].
+     * Gets query for [[Mapel]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getTugas()
+    public function getMapel()
     {
-        return $this->hasOne(MataPelajaran::className(), ['id_mapel' => 'id_tugas']);
+        return $this->hasOne(MataPelajaran::className(), ['id_mapel' => 'id_mapel']);
     }
 
     /**
