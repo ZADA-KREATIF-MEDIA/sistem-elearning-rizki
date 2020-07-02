@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2020-06-25 13:02:08
+Date: 2020-07-02 12:00:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -51,6 +51,8 @@ CREATE TABLE `guru` (
 -- ----------------------------
 -- Records of guru
 -- ----------------------------
+INSERT INTO `guru` VALUES ('123123123', 'Sarwan Hamid', '23123', '123123111111', '123456', '123456', '1');
+INSERT INTO `guru` VALUES ('123124143', 'Endra', '12312', '111111111111', 'sadf', 'adfads', '1');
 
 -- ----------------------------
 -- Table structure for `kelas`
@@ -61,11 +63,14 @@ CREATE TABLE `kelas` (
   `nama_kelas` varchar(25) NOT NULL,
   `jenjang` int(2) NOT NULL,
   PRIMARY KEY (`id_kelas`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of kelas
 -- ----------------------------
+INSERT INTO `kelas` VALUES ('8', 'IPA', '7');
+INSERT INTO `kelas` VALUES ('9', 'IPA', '8');
+INSERT INTO `kelas` VALUES ('10', 'IPA', '9');
 
 -- ----------------------------
 -- Table structure for `mata_pelajaran`
@@ -81,11 +86,12 @@ CREATE TABLE `mata_pelajaran` (
   KEY `FK_GURU` (`id_guru`),
   CONSTRAINT `FK_GURU` FOREIGN KEY (`id_guru`) REFERENCES `guru` (`nip`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_KELAS` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of mata_pelajaran
 -- ----------------------------
+INSERT INTO `mata_pelajaran` VALUES ('1', '8', 'BIOLOGI', '123123123');
 
 -- ----------------------------
 -- Table structure for `siswa`
@@ -122,7 +128,7 @@ CREATE TABLE `tugas` (
   `nama_file` varchar(25) NOT NULL,
   PRIMARY KEY (`id_tugas`),
   CONSTRAINT `FK_MAPEL_TUGAS` FOREIGN KEY (`id_tugas`) REFERENCES `mata_pelajaran` (`id_mapel`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tugas
