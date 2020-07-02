@@ -12,9 +12,15 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'id_tugas')->textInput() ?>
+
     <?= $form->field($model, 'id_mapel')->textInput() ?>
 
     <?= $form->field($model, 'nama_tugas')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'tanggal_upload')->textInput() ?>
+
+    <?= $form->field($model, 'nama_file')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

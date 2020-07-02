@@ -32,6 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_tugas',
             'id_mapel',
             'nama_tugas',
+            'tanggal_upload',
+            'nama_file',
         ],
     ]) ?>
 

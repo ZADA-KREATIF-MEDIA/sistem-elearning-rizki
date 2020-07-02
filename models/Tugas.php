@@ -10,7 +10,10 @@ use Yii;
  * @property int $id_tugas
  * @property int $id_mapel
  * @property string $nama_tugas
+ * @property string $tanggal_upload
+ * @property string $nama_file
  *
+ * @property MataPelajaran $tugas
  * @property TugasDetail[] $tugasDetails
  */
 class Tugas extends \yii\db\ActiveRecord
@@ -29,9 +32,12 @@ class Tugas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_mapel', 'nama_tugas'], 'required'],
+            [['id_mapel', 'nama_tugas', 'tanggal_upload', 'nama_file'], 'required'],
             [['id_mapel'], 'integer'],
+            [['tanggal_upload'], 'safe'],
             [['nama_tugas'], 'string', 'max' => 50],
+            [['nama_file'], 'string', 'max' => 25],
+            [['id_tugas'], 'exist', 'skipOnError' => true, 'targetClass' => MataPelajaran::className(), 'targetAttribute' => ['id_tugas' => 'id_mapel']],
         ];
     }
 
@@ -44,7 +50,19 @@ class Tugas extends \yii\db\ActiveRecord
             'id_tugas' => 'Id Tugas',
             'id_mapel' => 'Id Mapel',
             'nama_tugas' => 'Nama Tugas',
+            'tanggal_upload' => 'Tanggal Upload',
+            'nama_file' => 'Nama File',
         ];
+    }
+
+    /**
+     * Gets query for [[Tugas]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTugas()
+    {
+        return $this->hasOne(MataPelajaran::className(), ['id_mapel' => 'id_tugas']);
     }
 
     /**
