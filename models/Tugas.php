@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "tugas".
@@ -16,6 +17,7 @@ use Yii;
  * @property MataPelajaran $tugas
  * @property TugasDetail[] $tugasDetails
  */
+
 class Tugas extends \yii\db\ActiveRecord
 {
     /**
@@ -32,11 +34,11 @@ class Tugas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_mapel', 'nama_tugas', 'tanggal_upload', 'nama_file'], 'required'],
+            [['id_mapel', 'nama_tugas', 'tanggal_upload'], 'required'],
             [['id_mapel'], 'integer'],
             [['tanggal_upload'], 'safe'],
             [['nama_tugas'], 'string', 'max' => 50],
-            [['nama_file'], 'string', 'max' => 25],
+            [['nama_file'], 'file'],
             [['id_tugas'], 'exist', 'skipOnError' => true, 'targetClass' => MataPelajaran::className(), 'targetAttribute' => ['id_tugas' => 'id_mapel']],
         ];
     }
