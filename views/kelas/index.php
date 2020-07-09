@@ -11,11 +11,12 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="kelas-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+   
 
-    <p>
-        <?= Html::a('Create Kelas', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <h4> DATA KELAS 
+        <?= Html::a('TAMBAH KELAS', ['create'], ['class' => 'btn btn-success pull-right']) ?>
+       
+    </h4>
 
     <?php Pjax::begin(); ?>
 
@@ -24,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id_kelas',
+            //'id_kelas',
             'nama_kelas',
             'jenjang',
 
