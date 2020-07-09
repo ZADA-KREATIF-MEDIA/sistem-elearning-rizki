@@ -3,13 +3,12 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\tugas;
+use app\models\Tugas;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
-
 /**
  * TugasController implements the CRUD actions for tugas model.
  */
@@ -67,19 +66,33 @@ class TugasController extends Controller
     {
         $model = new tugas();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->nama_file = UploadedFile::getInstance($model,'nama_file');
+        if ($model->load(Yii::$app->request->post()) && $model->save())
+        {
 
-            if($model->nama_file && $model->validate()){
-                $model->nama_file->saveAs('uploads/' . $model->nama_file->baseName . '.' . $model->nama_file-extension);
+            $nama_file = UploadedFile::getInstance($model, 'nama_file');
+            
+            echo $nama_file;
+            if (!empty($nama_file))
+            {
+                    echo $nama_file;
+                    $nama_file->saveAs(Yii::getAlias('@app/web/tugas/').'-'.$nama_file);
+                    $model->nama_file=234;
+                    $model->save();
             }
-            return $this->redirect(['view', 'id' => $model->id_tugas]);
+            
+           return $this->redirect(['view', 'id' => $model->id_tugas]);
+       
+        }
+        else
+        {
+
+            return $this->render('create', [
+                'model' => $model,
+            ]);
         }
 
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        
     }
 
     /**

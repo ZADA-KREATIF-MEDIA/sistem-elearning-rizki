@@ -14,7 +14,7 @@ use app\models\MataPelajaran;
 
 <div class="tugas-form">
 
-    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
 
     <!--pembuatan dropdown list mapel-->
@@ -27,10 +27,10 @@ use app\models\MataPelajaran;
 
     <?= $form->field($model, 'tanggal_upload')->textInput(['type'=>'date']) ?>
 
-    <?= $form->field($model, 'nama_file')->fileInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'nama_file')->fileInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('SIMPAN TUGAS', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
