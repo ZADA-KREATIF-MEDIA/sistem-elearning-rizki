@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -11,26 +12,67 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="mata-pelajaran-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+  
 
     <p>
-        <?= Html::a('Create Mata Pelajaran', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::button(
+            'TAMBAH',
+            [
+                'value' => Url::to(['create']),
+                'title' => 'TAMBAH DATA', 'class' => 'showModalButton btn btn-primary'
+            ]
+        ); ?>
+
     </p>
 
     <?php Pjax::begin(); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'layout' => '{items}{pager}{summary}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'id_mapel',
-            'id_kelas',
+            [
+                
+                'header' => 'KELAS',
+                'value' => 'id_kelas'
+                ],
             'nama_mapel',
-            'id_guru',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'header' => 'NAMA GURU',
+                'value' => 'id_guru.nip.nama_guru'
+                ],
+            
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'header' => 'AKSI',
+                'template' => '{update}&nbsp;{delete}',
+                'buttons' => [
+                    'update' => function ($url, $model) {
+                        $id = $model->id_mapel;
+                        return Html::button(
+                            'Update',
+                            [
+                                'value' => Url::to(['update', 'id' => $id]),
+                                'title' => 'UPDATE DATA', 'class' => 'showModalButton btn btn-success'
+                            ]
+                        );
+                    },
+                    'delete' => function ($url, $model) {
+                        return Html::a('Delete', ['delete', 'id' => $model->id_mapel], [
+                            'class' => 'btn btn-danger',
+                            'data' => [
+                                'confirm' => 'Apakah anda akan menghapus data ini ?',
+                                'method' => 'post',
+                            ],
+                        ]);
+                    },
+                ]
+            ],
         ],
+        
     ]); ?>
 
     <?php Pjax::end(); ?>
