@@ -35,6 +35,16 @@ if (Yii::$app->controller->action->id === 'login') {
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
+        <?php
+            yii\bootstrap\Modal::begin([
+                'headerOptions' => ['id' => 'modalHeader'],
+                'id' => 'modal',
+                'size' => 'modal-md',
+                'clientOptions' => ['backdrop' => 'static', 'keyboard' => true]
+            ]);
+            echo "<div id='modalContent'></div>";
+            yii\bootstrap\Modal::end();
+            ?>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
     <?php $this->beginBody() ?>

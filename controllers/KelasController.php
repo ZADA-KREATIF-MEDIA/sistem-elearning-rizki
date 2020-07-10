@@ -66,11 +66,12 @@ class KelasController extends Controller
     {
         $model = new Kelas();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_kelas]);
+        if ($model->load(Yii::$app->request->post()) && $model->save())
+        {
+            return $this->redirect(['index']);
         }
 
-        return $this->render('create', [
+        return $this->renderAjax('create', [
             'model' => $model,
         ]);
     }
@@ -90,7 +91,7 @@ class KelasController extends Controller
             return $this->redirect(['view', 'id' => $model->id_kelas]);
         }
 
-        return $this->render('update', [
+        return $this->renderAjax('update', [
             'model' => $model,
         ]);
     }
