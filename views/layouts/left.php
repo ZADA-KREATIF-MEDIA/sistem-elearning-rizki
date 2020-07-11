@@ -10,25 +10,24 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
 					['label' => 'BILAH NAVIGASI', 'options' => ['class' => 'header']],
-					['label' => 'Beranda', 'url' => ['/']],
-                    ['label' => 'Data Kelas', 'url' => ['kelas/']],
-					
-					['label' => 'Data Tugas', 'url' => ['tugas/']],
-					['label' => 'Data Mata Pelajaran', 'url' => ['mata-pelajaran/']],
-					
+					['label' => 'Beranda','icon' => 'home', 'url' => ['/']],
+                    ['label' => 'Data Kelas','icon' => 'building', 'url' => ['kelas/']],
+					['label' => 'Data Tugas','icon' => 'list', 'url' => ['tugas/']],
+					['label' => 'Data Mata Pelajaran','icon' => 'book', 'url' => ['mata-pelajaran/']],
+
                    
 					[
                         'label' => 'Data Pengguna',
-                        'icon' => 'share',
+                        'icon' => 'users',
                         'url' => '#',
                         'items' => [
-                           ['label' => 'Siswa', 'url' => ['siswa/']],
-					['label' => 'Guru', 'url' => ['guru/']],
-					['label' => 'Admin', 'url' => ['admin/']],
+                           ['label' => 'Siswa','icon' => 'user text-green', 'url' => ['siswa/']],
+					['label' => 'Guru','icon' => 'user text-yellow', 'url' => ['guru/']],
+					['label' => 'Admin','icon' => 'user text-blue','url' => ['admin/']],
                             
                         ],
                     ],
-					 ['label' => 'LOGOUT', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+					 ['label' => 'Keluar','icon' => 'gear text-danger', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                 ],
             ]
         ) ?>

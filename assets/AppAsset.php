@@ -19,14 +19,18 @@ class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
+    public $sourcePath = '@vendor/almasaeed2010/adminlte/plugins';
     public $css = [
         'css/site.css',
+        'chart.js/Chart.min.css',
     ];
     public $js = [
         'js/modal.js',
+        'chart.js/Chart.bundle.min.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
+        //'dmstr\adminlte\web\AdminLteAsset',
     ];
 }

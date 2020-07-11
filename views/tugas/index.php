@@ -1,7 +1,8 @@
 <?php
 
+use kartik\grid\GridView;
 use yii\helpers\Html;
-use yii\grid\GridView;
+use yii\helpers\Url;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -11,16 +12,25 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tugas-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+  
 
     <p>
-        <?= Html::a('Create Tugas', ['create'], ['class' => 'btn btn-success']) ?>
+        <?=Html::button(
+    'TAMBAH',
+    [
+        'value' => Url::to(['create']),
+        'title' => 'TAMBAH DATA', 'class' => 'showModalButton btn btn-primary',
+    ]
+);?>
+
     </p>
 
     <?php Pjax::begin(); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        
+      
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 

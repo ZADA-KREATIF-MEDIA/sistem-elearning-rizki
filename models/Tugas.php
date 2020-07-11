@@ -38,7 +38,7 @@ class Tugas extends \yii\db\ActiveRecord
             [['id_mapel'], 'integer'],
             [['tanggal_upload'], 'safe'],
             [['nama_tugas'], 'string', 'max' => 50],
-            [['nama_file'],'string'],
+            [['nama_file'],'file','skipOnEmpty'=>TRUE,'extensions'=>'pdf'],
             [['id_tugas'], 'exist', 'skipOnError' => true, 'targetClass' => MataPelajaran::className(), 'targetAttribute' => ['id_tugas' => 'id_mapel']],
         ];
     }

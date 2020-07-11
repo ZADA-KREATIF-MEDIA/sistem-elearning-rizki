@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\MataPelajaran;
+use app\models\Tugas;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\web\UploadedFile;
 /**
- * MataPelajaranController implements the CRUD actions for MataPelajaran model.
+ * TugasController implements the CRUD actions for Tugas model.
  */
-class MataPelajaranController extends Controller
+class TugasController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,14 +30,13 @@ class MataPelajaranController extends Controller
     }
 
     /**
-     * Lists all MataPelajaran models.
+     * Lists all Tugas models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => MataPelajaran::find(),
-            
+            'query' => Tugas::find(),
         ]);
 
         return $this->render('index', [
@@ -46,7 +45,7 @@ class MataPelajaranController extends Controller
     }
 
     /**
-     * Displays a single MataPelajaran model.
+     * Displays a single Tugas model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -59,25 +58,47 @@ class MataPelajaranController extends Controller
     }
 
     /**
-     * Creates a new MataPelajaran model.
+     * Creates a new Tugas model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new MataPelajaran();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+        $model = new Tugas();
+        
+        if ($model->load(Yii::$app->request->post())) 
+        {
+            $nama_file = UploadedFile::getInstance($model, 'nama_file');
+           
+            if ($model->validate())
+            {
+                $model->save();
+                if(!empty($nama_file))
+                {   
+                        
+                        $nama_file->saveAs(Yii::getAlias('@app/web/tugas/') .$nama_file);
+                        $model->nama_file =$nama_file;
+                        $model->save(FALSE);
+                }
+                
+               
+                Yii::$app->getSession()->setFlash('success', 'Sukses Menyimpan Data');
+                return $this->redirect(['index']);
+            }
+        }
+        else
+        {
+            return $this->renderAjax('create', [
+                'model' => $model,
+            ]);
         }
 
-        return $this->renderAjax('create', [
-            'model' => $model,
-        ]);
+        
+      
     }
 
     /**
-     * Updates an existing MataPelajaran model.
+     * Updates an existing Tugas model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -88,16 +109,16 @@ class MataPelajaranController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id_Tugas]);
         }
 
-        return $this->renderAjax('update', [
+        return $this->render('update', [
             'model' => $model,
         ]);
     }
 
     /**
-     * Deletes an existing MataPelajaran model.
+     * Deletes an existing Tugas model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -111,15 +132,15 @@ class MataPelajaranController extends Controller
     }
 
     /**
-     * Finds the MataPelajaran model based on its primary key value.
+     * Finds the Tugas model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return MataPelajaran the loaded model
+     * @return Tugas the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = MataPelajaran::findOne($id)) !== null) {
+        if (($model = Tugas::findOne($id)) !== null) {
             return $model;
         }
 

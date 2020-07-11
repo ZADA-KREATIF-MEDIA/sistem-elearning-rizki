@@ -32,15 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'layout' => '{items}{pager}{summary}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             //'id_kelas',
             'nama_kelas',
             'jenjang',
-
             [
                 'class' => 'yii\grid\ActionColumn',
                 'header' => 'AKSI',
-                'template' => '{update}&nbsp;{delete}',
+                'template' => '{update}&nbsp;{delete}&nbsp;{view}',
                 'buttons' => [
                     'update' => function ($url, $model) {
                         $id = $model->id_kelas;
@@ -57,6 +55,15 @@ $this->params['breadcrumbs'][] = $this->title;
                             'class' => 'btn btn-danger',
                             'data' => [
                                 'confirm' => 'Apakah anda akan menghapus data ini ?',
+                                'method' => 'post',
+                            ],
+                        ]);
+                    },
+                    'view' => function ($url, $model) {
+                        return Html::a('View', ['view', 'id' => $model->id_kelas], [
+                            'class' => 'btn btn-warning',
+                            'data' => [
+                                
                                 'method' => 'post',
                             ],
                         ]);
