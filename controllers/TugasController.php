@@ -112,7 +112,7 @@ class TugasController extends Controller
             return $this->redirect(['view', 'id' => $model->id_Tugas]);
         }
 
-        return $this->render('update', [
+        return $this->renderAjax('update', [
             'model' => $model,
         ]);
     }

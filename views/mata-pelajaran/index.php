@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Mata Pelajarans';
+$this->title = 'MATA PELAJARAN';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="mata-pelajaran-index">
@@ -26,25 +26,29 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php Pjax::begin();?>
-
     <?=GridView::widget([
     'dataProvider' => $dataProvider,
     'layout' => '{items}{pager}{summary}',
     'columns' => [
         ['class' => 'yii\grid\SerialColumn'],
 
-        'id_mapel',
-        [
-
-            'attribute' => 'id_kelas',
-            'value' => 'id_kelas',
-        ],
         'nama_mapel',
         [
-            'header' => 'NAMA GURU',
-            'value' => 'id_guru.nip.nama_guru',
+            'label'=>'KELAS',
+            'attribute'=>'id_kelas',
+            'value'=>function($model)
+            {
+             return $model->kelas->nama_kelas."-".$model->kelas->jenjang ;
+            }
         ],
-
+        [
+            'label'=>'GURU PENGAMPU',
+            'attribute'=>'id_guru',
+            'value'=>function($model)
+            {
+             return $model->guru->nip."-".$model->guru->nama ;
+            }
+        ],
         [
             'class' => 'yii\grid\ActionColumn',
             'header' => 'AKSI',

@@ -46,13 +46,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             'Update',
                             [
                                 'value' => Url::to(['update', 'id' => $id]),
-                                'title' => 'UPDATE DATA', 'class' => 'showModalButton btn btn-success'
+                                'title' => 'UPDATE DATA', 'class' => 'showModalButton btn btn-success btn-sm'
                             ]
                         );
                     },
                     'delete' => function ($url, $model) {
                         return Html::a('Delete', ['delete', 'id' => $model->id_kelas], [
-                            'class' => 'btn btn-danger',
+                            'class' => 'btn btn-danger btn-sm',
                             'data' => [
                                 'confirm' => 'Apakah anda akan menghapus data ini ?',
                                 'method' => 'post',
@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                     'view' => function ($url, $model) {
                         return Html::a('View', ['view', 'id' => $model->id_kelas], [
-                            'class' => 'btn btn-warning',
+                            'class' => 'btn btn-warning btn-sm',
                             'data' => [
                                 
                                 'method' => 'post',

@@ -4,15 +4,16 @@ use kartik\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Tugas';
+$this->title = 'DATA TUGAS';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tugas-index">
 
-  
+   
 
     <p>
         <?=Html::button(
@@ -29,18 +30,48 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        
-      
+        'layout' => '{items}{pager}{summary}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id_tugas',
-            'id_mapel',
             'nama_tugas',
+          
             'tanggal_upload',
             'nama_file',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'header' => 'AKSI',
+                'template' => '{update}&nbsp;{delete}&nbsp;{view}',
+                'buttons' => [
+                    'update' => function ($url, $model) {
+                        $id = $model->id_tugas;
+                        return Html::button(
+                            'Update',
+                            [
+                                'value' => Url::to(['update', 'id' => $id]),
+                                'title' => 'UPDATE DATA', 'class' => 'showModalButton btn btn-success btn-sm'
+                            ]
+                        );
+                    },
+                    'delete' => function ($url, $model) {
+                        return Html::a('Delete', ['delete', 'id' => $model->id_tugas], [
+                            'class' => 'btn btn-danger btn-sm',
+                            'data' => [
+                                'confirm' => 'Apakah anda akan menghapus data ini ?',
+                                'method' => 'post',
+                            ],
+                        ]);
+                    },
+                    'view' => function ($url, $model) {
+                        return Html::a('View', ['view', 'id' => $model->id_tugas], [
+                            'class' => 'btn btn-warning btn-sm',
+                            'data' => [
+                                
+                                'method' => 'post',
+                            ],
+                        ]);
+                    },
+                ]
+            ],
         ],
     ]); ?>
 

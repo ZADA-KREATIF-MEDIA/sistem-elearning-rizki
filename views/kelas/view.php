@@ -30,6 +30,9 @@ $command = $connection->createCommand("SELECT * FROM SISWA WHERE id_kelas=$id_ke
 
 $result = $command->queryAll();
 ?>
+
+<h4>DATA SISWA</h4>
+
 <table class="table table-responsive">
     <thead class="bg-blue-gradient">
         <tr>
