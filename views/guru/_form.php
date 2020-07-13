@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'nip')->textInput() ?>
+    <?= $form->field($model, 'nip')->textInput(['readOnly' => true]) ?>
 
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
 
@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'level')->textInput() ?>
+    <?= $form->field($model, 'level')->dropDownList([ '2' => 'Guru' ], ['prompt' => '-- Pilih Level--']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

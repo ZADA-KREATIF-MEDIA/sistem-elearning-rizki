@@ -10,21 +10,11 @@ $this->title = $model->nip;
 $this->params['breadcrumbs'][] = ['label' => 'Gurus', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
+$connection = Yii::$app->getDb();
+$id_guru=$model->nip;
 ?>
 <div class="guru-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->nip], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->nip], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
 
     <?= DetailView::widget([
         'model' => $model,
@@ -38,5 +28,45 @@ $this->params['breadcrumbs'][] = $this->title;
             'level',
         ],
     ]) ?>
+ <?php
+
+
+$command = $connection->createCommand("SELECT * FROM mata_pelajaran JOIN kelas ON mata_pelajaran.id_kelas=kelas.id_kelas WHERE id_guru=$id_guru");
+
+$result = $command->queryAll();
+?>
+<h4>MATA PELAJARAN YANG DI AMPU</h4>
+
+<table class="table table-responsive">
+    <thead class="bg-blue-gradient">
+        <tr>
+            <th scope="col">NO</th>
+            <th scope="col">KODE MAPEL</th>
+            <th scope="col">NAMA MAPEL</th>
+            <th scope="col">KELAS</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $no = 1;
+        foreach ($result as $data) {
+
+        ?>
+            <tr>
+                <td scope="row"><?= $no; ?></td>
+                    
+                    <td><?= $data['id_mapel']; ?></td>
+                    <td><?= $data['nama_mapel']; ?></td>
+                    <td><?= $data['nama_kelas']; ?>-<?= $data['jenjang']; ?></td>
+                </td>
+            </tr>
+        <?php
+            $no++;
+        }
+        ?>
+    </tbody>
+</table>
 
 </div>
+

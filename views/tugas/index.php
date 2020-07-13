@@ -27,14 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php Pjax::begin(); ?>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'layout' => '{items}{pager}{summary}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'nama_tugas',
-          
             'tanggal_upload',
             'nama_file',
             [

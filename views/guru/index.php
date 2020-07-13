@@ -12,7 +12,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="guru-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::button(
@@ -32,14 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'layout' => '{items}{pager}{summary}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            //'nip',
+           
             'nip',
             'nama',
             'alamat',
-            'no_telp',
+            'no_tlp',
             'username',
             'password',
-            'level',
+           
             [
                 'class' => 'yii\grid\ActionColumn',
                 'header' => 'AKSI',
