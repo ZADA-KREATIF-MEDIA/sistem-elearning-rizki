@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Controllers;
+namespace app\controllers;
 
 use Yii;
 use app\models\Admin;
@@ -70,7 +70,7 @@ class AdminController extends Controller
             return $this->redirect(['view', 'id' => $model->id_admin]);
         }
 
-        return $this->render('create', [
+        return $this->renderAjax('create', [
             'model' => $model,
         ]);
     }
@@ -87,10 +87,10 @@ class AdminController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_admin]);
+            return $this->redirect(['index']);
         }
 
-        return $this->render('update', [
+        return $this->renderAjax('update', [
             'model' => $model,
         ]);
     }

@@ -18,7 +18,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'level')->textInput() ?>
+   
+    <?= $form->field($model, 'level')->dropDownList([ '3' => 'Admin' ], ['prompt' => '-- Pilih Level--']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

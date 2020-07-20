@@ -24,7 +24,7 @@ $fieldOptions2 = [
         <a href="#"><b>E</b>-LEARNING</a>
     </div>
     <!-- /.login-logo -->
-    <div class="login-box-body"> <p class="login-box-msg">Sign in to start your session</p>
+    <div class="login-box-body"> 
 
         <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
 
