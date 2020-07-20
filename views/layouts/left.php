@@ -27,11 +27,11 @@
                             
                         ],
                     ],
-					 ['label' => 'Keluar','icon' => 'gear text-danger', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+					 ['label' => 'Keluar','icon' => 'gear text-danger', 'url' => ['site/login/logout'], 'visible' => Yii::$app->user->isGuest],
                 ],
             ]
         ) ?>
-
+ 
     </section>
 
 </aside>
