@@ -27,6 +27,18 @@ $config = [
         ],
         'user' => [
             'identityClass' => 'app\models\admin',
+            
+            'enableAutoLogin' => false,
+        ],
+        'siswa' => [
+            'class'=>'yii\web\Siswa',
+            'identityClass' => 'app\models\Siswa',
+            'enableAutoLogin' => false,
+        ],
+        'guru' => [
+            'class'=>'yii\web\Guru',
+            'identityClass' => 'app\models\guru',
+            
             'enableAutoLogin' => false,
         ],
         'errorHandler' => [

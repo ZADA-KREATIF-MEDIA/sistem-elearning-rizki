@@ -5,16 +5,31 @@ use yii\helpers\Html;
 /* @var $content string */
 
 
-if (Yii::$app->controller->action->id === 'login') { 
-/**
- * Do not use this code in your template. Remove it. 
- * Instead, use the code  $this->layout = '//main-login'; in your controller.
- */
+if (Yii::$app->controller->action->id === 'login')
+{ 
+
     echo $this->render(
         'main-login',
         ['content' => $content]
     );
-} else {
+}
+else if (Yii::$app->controller->action->id === 'siswa')
+{ 
+
+    echo $this->render(
+        'main-login-siswa',
+        ['content' => $content]
+    );
+}
+else if (Yii::$app->controller->action->id === 'guru')
+{ 
+
+    echo $this->render(
+        'main-login-siswa',
+        ['content' => $content]
+    );
+}
+ else {
 
     if (class_exists('backend\assets\AppAsset')) {
         backend\assets\AppAsset::register($this);

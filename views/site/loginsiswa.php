@@ -27,8 +27,8 @@ $fieldOptions2 = [
     <!-- /.login-logo -->
     <div class="login-box-body"> 
     <div class="btn-group" role="group" aria-label="Basic example">
-        <?= Html::a('ADMIN', ['/site/login'], ['class'=>'btn btn-primary']) ?>
-        <?= Html::a('SISWA', ['/site/siswa'], ['class'=>'btn btn-default']) ?>
+        <?= Html::a('ADMIN', ['/site/login'], ['class'=>'btn btn-default']) ?>
+        <?= Html::a('SISWA', ['/site/siswa'], ['class'=>'btn btn-primary']) ?>
         <?= Html::a('GURU', ['/site/guru'], ['class'=>'btn btn-default']) ?>
 </div>
         <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>

@@ -77,8 +77,13 @@ $jumlah_siswa = $command4->queryAll();
           <!-- /.info-box -->
         </div>
         <!-- /.col -->
+        <?php
+         $user_id=Yii::$app->user->identity;
+         
+         var_dump($user_id);
+         ?>
       </div>
       <!-- /.row -->
-      <
+      
       
 </div>

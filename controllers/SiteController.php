@@ -8,6 +8,8 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
+use app\models\LoginSiswa;
+use app\models\LoginGuru;
 use app\models\ContactForm;
 
 class SiteController extends Controller
@@ -20,10 +22,11 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
+              
                 'only' => ['logout'],
                 'rules' => [
                     [
-                        'actions' => ['login', 'logout','error'],
+                        'actions' => ['login','loginsiswa', 'logout','error'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -87,6 +90,41 @@ class SiteController extends Controller
 
        
         return $this->render('login', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionSiswa()
+    {
+       
+
+        $model = new LoginSiswa();
+        if ($model->load(Yii::$app->request->post()) && $model->login())
+        {
+           return $this->goBack();
+        }
+
+       
+        return $this->render('loginsiswa', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionGuru()
+    {
+        if (!Yii::$app->user->isGuest)
+         {
+            return $this->goHome();
+        }
+
+        $model = new LoginGuru();
+        if ($model->load(Yii::$app->request->post()) && $model->login())
+        {
+           return $this->goBack();
+        }
+
+       
+        return $this->render('loginguru', [
             'model' => $model,
         ]);
     }
