@@ -23,20 +23,22 @@ class SiteController extends Controller
                 'only' => ['logout'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['login', 'logout','error'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
+                 
                 ],
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post','get','put'],
+                    'logout' => ['post','get'],
                 ],
             ],
         ];
     }
+    
 
     /**
      * {@inheritdoc}
@@ -72,16 +74,18 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
+        if (!Yii::$app->user->isGuest)
+         {
             return $this->goHome();
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+        if ($model->load(Yii::$app->request->post()) && $model->login())
+        {
+           return $this->goBack();
         }
 
-        $model->password = '';
+       
         return $this->render('login', [
             'model' => $model,
         ]);

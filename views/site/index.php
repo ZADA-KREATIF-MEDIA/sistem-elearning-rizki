@@ -79,5 +79,6 @@ $jumlah_siswa = $command4->queryAll();
         <!-- /.col -->
       </div>
       <!-- /.row -->
+      <
       
 </div>
