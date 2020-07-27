@@ -1,7 +1,8 @@
 <?php
 
 /* @var $this yii\web\View */
-
+use yii\helpers\Html;
+use yii\helpers\Url;
 $this->title = 'E-LEARNING';
 $connection = Yii::$app->getDb();
 ?>
@@ -21,8 +22,10 @@ $jumlah_mapel = $command3->queryAll();
 $jumlah_siswa = $command4->queryAll();
 
 ?>
+
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
+          
             <span class="info-box-icon bg-aqua"><i class="fa fa-building"></i></span>
             <div class="info-box-content">
               <span class="info-box-text">JUMLAH KELAS</span>
@@ -77,13 +80,27 @@ $jumlah_siswa = $command4->queryAll();
           <!-- /.info-box -->
         </div>
         <!-- /.col -->
-        <?php
-         $user_id=Yii::$app->user->identity;
-         
-         var_dump($user_id);
-         ?>
+       
       </div>
       <!-- /.row -->
-      
-      
+      <?php 
+      if(Yii::$app->user->identity->level=="3")
+      {
+      ?>
+      <button class="btn btn-danger">USER LOGIN : (<?= Yii::$app->user->identity->username ?>)</button> <?= Html::a('LOGOUT ADMIN', ['/site/logout'], ['class'=>'btn btn-primary']) ?>
+      <?php
+      }
+      else if(Yii::$app->user->identity->level=="2")
+      {
+      ?>
+      <button class="btn btn-danger">USER LOGIN : (<?= Yii::$app->user->identity->username ?>)</button> <?= Html::a('LOGOUT GURU', ['/site/logout'], ['class'=>'btn btn-primary']) ?>
+      <?php
+      }
+      else if(Yii::$app->user->identity->level=="3")
+      {
+      ?>
+      <button class="btn btn-danger">USER LOGIN : (<?= Yii::$app->user->identity->username ?>)</button> <?= Html::a('LOGOUT SISWA', ['/site/logout'], ['class'=>'btn btn-primary']) ?>
+      <?php
+      }
+      ?>
 </div>

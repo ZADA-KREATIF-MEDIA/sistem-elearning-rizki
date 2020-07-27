@@ -27,7 +27,7 @@
                             
                         ],
                     ],
-					 ['label' => 'Keluar','icon' => 'gear text-danger', 'url' => ['site/logout']],
+					
                 ],
             ]
         ) ?>

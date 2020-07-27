@@ -84,6 +84,7 @@ class Siswa extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->hasMany(TugasDetail::className(), ['nis' => 'nis']);
     }
+    
     public static function findIdentity($id)
     {
         return static::findOne($id);

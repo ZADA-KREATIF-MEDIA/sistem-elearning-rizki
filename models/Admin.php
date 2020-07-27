@@ -79,7 +79,6 @@ class Admin extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->getAuthKey() === $authKey;
     }
 
-    //generator 
     public function validatePassword($password)
     {
         return $this->password === ($password);

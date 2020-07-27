@@ -26,20 +26,34 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
+            'class'=>'yii\web\User',
             'identityClass' => 'app\models\admin',
-            
             'enableAutoLogin' => false,
+            'enableSession'=> true,
+            'loginUrl' => ['site/login'],
+            'identityCookie' => [
+                'name' => '_panelUser',
+            ]
         ],
         'siswa' => [
-            'class'=>'yii\web\Siswa',
+            'class'=>'yii\web\User',
             'identityClass' => 'app\models\Siswa',
             'enableAutoLogin' => false,
+            'enableSession'=> true,
+            'loginUrl' => ['site/siswa'],
+            'identityCookie' => [
+                'name' => '_panelSiswa',
+            ]
         ],
         'guru' => [
-            'class'=>'yii\web\Guru',
+            'class'=>'yii\web\User',
             'identityClass' => 'app\models\guru',
-            
             'enableAutoLogin' => false,
+            'enableSession'=> true,
+            'loginUrl' => ['site/guru'],
+            'identityCookie' => [
+                'name' => '_panelGuru',
+            ]
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

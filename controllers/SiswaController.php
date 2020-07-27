@@ -5,10 +5,11 @@ namespace app\controllers;
 use Yii;
 use app\models\siswa;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\LoginSiswa;
 /**
  * SiswaController implements the CRUD actions for siswa model.
  */
@@ -20,10 +21,23 @@ class SiswaController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                 
+                'only' => ['logout'],
+                'rules' => [
+                    [
+                        'actions' => ['login','loginsiswa', 'logout','error'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                 
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'logout' => ['post','get'],
                 ],
             ],
         ];
@@ -123,5 +137,34 @@ class SiswaController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionSiswa()
+    {
+       
+        if (!Yii::$app->siswa->isGuest)
+        {
+          
+            return $this->redirect(['/']);
+       }
+
+        $model = new LoginSiswa();
+        if ($model->load(Yii::$app->request->post()) && $model->login())
+        {
+           
+            return $this->goBack();
+        }
+
+        
+        return $this->render('loginsiswa', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionLogout()
+    {
+        Yii::$app->siswa->logout();
+
+        return $this->goHome();
     }
 }

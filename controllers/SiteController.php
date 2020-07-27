@@ -10,7 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\LoginSiswa;
 use app\models\LoginGuru;
-use app\models\ContactForm;
+
 
 class SiteController extends Controller
 {
@@ -22,15 +22,16 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-              
-                'only' => ['logout'],
                 'rules' => [
                     [
-                        'actions' => ['login','loginsiswa', 'logout','error'],
+                        'actions' => ['login', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['logout', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
-                 
                 ],
             ],
             'verbs' => [
@@ -85,6 +86,7 @@ class SiteController extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login())
         {
+            echo "kembali";
            return $this->goBack();
         }
 
@@ -94,21 +96,7 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionSiswa()
-    {
-       
-
-        $model = new LoginSiswa();
-        if ($model->load(Yii::$app->request->post()) && $model->login())
-        {
-           return $this->goBack();
-        }
-
-       
-        return $this->render('loginsiswa', [
-            'model' => $model,
-        ]);
-    }
+    
 
     public function actionGuru()
     {
@@ -140,32 +128,5 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
-
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
+   
 }

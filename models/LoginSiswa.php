@@ -8,14 +8,14 @@ use yii\base\Model;
 /**
  * LoginForm is the model behind the login form.
  *
- * @property User|null $user This property is read-only.
+ * @property User|null $siswa This property is read-only.
  *
  */
 class LoginSiswa extends Model
 {
     public $username;
     public $password;
-    public $rememberMe = true;
+    public $rememberMe = false;
 
     private $_user = false;
 
@@ -45,9 +45,9 @@ class LoginSiswa extends Model
     public function validatePassword($attribute, $params)
     {
         if (!$this->hasErrors()) {
-            $user = $this->getUser();
+            $siswa = $this->getSiswa();
 
-            if (!$user || !$user->validatePassword($this->password)) {
+            if (!$siswa || !$siswa->validatePassword($this->password)) {
                 $this->addError($attribute, 'Incorrect username or password.');
             }
         }
@@ -60,7 +60,7 @@ class LoginSiswa extends Model
     public function login()
     {
         if ($this->validate()) {
-            return Yii::$app->siswa->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+            return Yii::$app->siswa->login($this->getSiswa(), $this->rememberMe ? 3600*24*30 : 0);
         }
         return false;
     }
@@ -70,7 +70,7 @@ class LoginSiswa extends Model
      *
      * @return User|null
      */
-    public function getUser()
+    public function getSiswa()
     {
         if ($this->_user === false) {
             $this->_user = Siswa::findByUsername($this->username);
