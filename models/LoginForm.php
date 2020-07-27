@@ -48,7 +48,7 @@ class LoginForm extends Model
             $user = $this->getUser();
 
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, 'Username atau Password anda salah');
             }
         }
     }
@@ -64,10 +64,11 @@ class LoginForm extends Model
 
     public function getUser()
     {
-        if ($this->_user === false) {
+        if ($this->_user === false)
+        {
             $this->_user = Admin::findByUsername($this->username);
         }
-
+    
         return $this->_user;
     }
 }

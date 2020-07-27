@@ -37,16 +37,16 @@ $config = [
         ],
         'siswa' => [
             'class'=>'yii\web\User',
-            'identityClass' => 'app\models\Siswa',
+            'identityClass' => 'app\models\siswa',
             'enableAutoLogin' => false,
             'enableSession'=> true,
-            'loginUrl' => ['site/siswa'],
+            'loginUrl' => ['siswa/login'],
             'identityCookie' => [
                 'name' => '_panelSiswa',
             ]
         ],
         'guru' => [
-            'class'=>'yii\web\User',
+            'class'=>'yii\web\sser',
             'identityClass' => 'app\models\guru',
             'enableAutoLogin' => false,
             'enableSession'=> true,

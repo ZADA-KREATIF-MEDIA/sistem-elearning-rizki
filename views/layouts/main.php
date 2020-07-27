@@ -13,7 +13,7 @@ if (Yii::$app->controller->action->id === 'login')
         ['content' => $content]
     );
 }
-else if (Yii::$app->controller->action->id === 'siswa')
+else if (Yii::$app->controller->action->id === 'siswa/login')
 { 
 
     echo $this->render(

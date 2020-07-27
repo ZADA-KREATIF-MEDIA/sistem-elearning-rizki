@@ -86,7 +86,7 @@ class SiteController extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login())
         {
-            echo "kembali";
+           
            return $this->goBack();
         }
 
@@ -98,24 +98,6 @@ class SiteController extends Controller
 
     
 
-    public function actionGuru()
-    {
-        if (!Yii::$app->user->isGuest)
-         {
-            return $this->goHome();
-        }
-
-        $model = new LoginGuru();
-        if ($model->load(Yii::$app->request->post()) && $model->login())
-        {
-           return $this->goBack();
-        }
-
-       
-        return $this->render('loginguru', [
-            'model' => $model,
-        ]);
-    }
 
     /**
      * Logout action.

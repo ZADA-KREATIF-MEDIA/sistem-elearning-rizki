@@ -139,26 +139,26 @@ class SiswaController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    public function actionSiswa()
+    public function actionLogin()
     {
        
         if (!Yii::$app->siswa->isGuest)
         {
-          
-            return $this->redirect(['/']);
+            echo "ini yang jalan";
+           //return $this->goHome();
        }
 
-        $model = new LoginSiswa();
-        if ($model->load(Yii::$app->request->post()) && $model->login())
-        {
-           
-            return $this->goBack();
-        }
+       $model = new LoginSiswa();
+       if ($model->load(Yii::$app->request->post()) && $model->login())
+       {
+          echo "if kedua yang jalan";
+          //return $this->goBack();
+       }
 
-        
-        return $this->render('loginsiswa', [
-            'model' => $model,
-        ]);
+      
+       return $this->render('login', [
+           'model' => $model,
+       ]);
     }
 
     public function actionLogout()
