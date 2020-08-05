@@ -80,26 +80,27 @@ $jumlah_siswa = $command4->queryAll();
           <!-- /.info-box -->
         </div>
         <!-- /.col -->
-       
+     
       </div>
       <!-- /.row -->
       <?php 
       if(Yii::$app->user->identity->level=="3")
       {
       ?>
-      <button class="btn btn-danger">USER LOGIN : (<?= Yii::$app->user->identity->username ?>)</button> <?= Html::a('LOGOUT ADMIN', ['/site/logout'], ['class'=>'btn btn-primary']) ?>
+      <button class="btn btn-default btn-block"><b>USER LOGIN : (<?= Yii::$app->user->identity->username ?>)</b></button> <?= Html::a('LOGOUT ADMIN', ['/site/logout'], ['class'=>'btn btn-primary btn-block']) ?>
+      <?php
+      }
+      else if(Yii::$app->user->identity->level=="1")
+      {
+      ?>
+      
+      <button class="btn btn-default btn-block">USER LOGIN : (<?= Yii::$app->user->identity->username ?>)</button> <?= Html::a('LOGOUT SISWA', ['/site/logout'], ['class'=>'btn btn-primary btn-block']) ?>
       <?php
       }
       else if(Yii::$app->user->identity->level=="2")
       {
       ?>
-      <button class="btn btn-danger">USER LOGIN : (<?= Yii::$app->user->identity->username ?>)</button> <?= Html::a('LOGOUT GURU', ['/site/logout'], ['class'=>'btn btn-primary']) ?>
-      <?php
-      }
-      else if(Yii::$app->user->identity->level=="3")
-      {
-      ?>
-      <button class="btn btn-danger">USER LOGIN : (<?= Yii::$app->user->identity->username ?>)</button> <?= Html::a('LOGOUT SISWA', ['/site/logout'], ['class'=>'btn btn-primary']) ?>
+      <button class="btn btn-danger btn-block">USER LOGIN : (<?= Yii::$app->user->identity->username ?>)</button> <?= Html::a('LOGOUT GURU', ['/site/logout'], ['class'=>'btn btn-primary']) ?>
       <?php
       }
       ?>

@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models;
+
 use yii\base\NotSupportedException;
 use yii\web\IdentityInterface;
 use Yii;

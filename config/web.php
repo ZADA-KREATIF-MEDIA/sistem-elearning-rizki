@@ -30,23 +30,21 @@ $config = [
             'identityClass' => 'app\models\admin',
             'enableAutoLogin' => false,
             'enableSession'=> true,
+            'idParam'=>'user',
             'loginUrl' => ['site/login'],
-            'identityCookie' => [
-                'name' => '_panelUser',
-            ]
+            'returnUrl'=>['site/login'],
         ],
         'siswa' => [
-            'class'=>'yii\web\User',
+            'class' => 'yii\web\User',
             'identityClass' => 'app\models\siswa',
             'enableAutoLogin' => false,
             'enableSession'=> true,
+            'idParam'=>'siswa',
             'loginUrl' => ['siswa/login'],
-            'identityCookie' => [
-                'name' => '_panelSiswa',
-            ]
+            'returnUrl'=>['siswa/login'],
         ],
         'guru' => [
-            'class'=>'yii\web\sser',
+            'class'=>'yii\web\User',
             'identityClass' => 'app\models\guru',
             'enableAutoLogin' => false,
             'enableSession'=> true,

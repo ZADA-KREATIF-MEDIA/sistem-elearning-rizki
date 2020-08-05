@@ -25,7 +25,8 @@ $fieldOptions2 = [
     </div>
     
     <!-- /.login-logo -->
-    <div class="login-box-body"> 
+    <div class="login-box-body">
+    <h4>LOGIN SISWA</h4>
     <div class="btn-group" role="group" aria-label="Basic example">
         <?= Html::a('ADMIN', ['/site/login'], ['class'=>'btn btn-default']) ?>
         <?= Html::a('SISWA', ['/siswa/login'], ['class'=>'btn btn-primary']) ?>

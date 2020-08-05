@@ -68,6 +68,10 @@ class LoginForm extends Model
         {
             $this->_user = Admin::findByUsername($this->username);
         }
+        if ($this->_user === false)
+        {
+            $this->_user = Siswa::findByUsername($this->username);
+        }
     
         return $this->_user;
     }

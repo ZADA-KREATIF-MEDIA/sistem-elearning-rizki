@@ -4,12 +4,14 @@ namespace app\controllers;
 
 use Yii;
 use app\models\siswa;
+
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\LoginSiswa;
+
 /**
  * SiswaController implements the CRUD actions for siswa model.
  */
@@ -23,23 +25,19 @@ class SiswaController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                 
-                'only' => ['logout'],
+               
                 'rules' => [
                     [
-                        'actions' => ['login','loginsiswa', 'logout','error'],
+                        'actions' => ['login', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['logout', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
-                 
                 ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post','get'],
-                ],
-            ],
+            ]
         ];
     }
 
@@ -144,21 +142,20 @@ class SiswaController extends Controller
        
         if (!Yii::$app->siswa->isGuest)
         {
-            echo "ini yang jalan";
-           //return $this->goHome();
-       }
+           return $this->goHome();
+        }
 
-       $model = new LoginSiswa();
-       if ($model->load(Yii::$app->request->post()) && $model->login())
-       {
-          echo "if kedua yang jalan";
-          //return $this->goBack();
-       }
+        $model = new LoginSiswa();
+
+        if ($model->load(Yii::$app->request->post()) && $model->login())
+        {
+            return $this->goBack();
+        }
 
       
-       return $this->render('login', [
-           'model' => $model,
-       ]);
+        return $this->render('login', [
+            'model' => $model,
+        ]);
     }
 
     public function actionLogout()
