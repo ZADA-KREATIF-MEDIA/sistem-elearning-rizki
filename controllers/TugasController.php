@@ -109,7 +109,7 @@ class TugasController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_Tugas]);
+            return $this->redirect(['index']);
         }
 
         return $this->renderAjax('update', [
@@ -118,18 +118,24 @@ class TugasController extends Controller
     }
 
     public function actionUnduh($id) 
-{ 
-    $model = $this->findModel($id);
+    { 
+        $model = $this->findModel($id);
 
-    $path = Yii::getAlias('@webroot/tugas/').$model->nama_file;
+        $path = Yii::getAlias('@webroot/tugas/').$model->nama_file;
 
-    
-    
-    if (file_exists($path))
-    {
-        return Yii::$app->response->sendFile($path);
+        
+        
+        if (file_exists($path))
+        {
+            return Yii::$app->response->sendFile($path);
+        }
     }
-}
+
+    public function actionUpload() 
+    { 
+        return "UPLOAD TUGAS DISINI";
+    }
+
 
     /**
      * Deletes an existing Tugas model.

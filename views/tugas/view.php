@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\helpers\Url;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\tugas */
@@ -41,6 +43,15 @@ $connection = Yii::$app->getDb();
         ],
     ]) ?>
 
+<?=Html::button(
+    'UPLOAD TUGAS SISWA',
+    [
+        'value' => Url::to(['upload']),
+        'title' => 'UPLOAD TUGAS SISWA', 'class' => 'showModalButton btn btn-danger btn-block',
+    ]
+);
+?>
+</br>
 <?php
 
 
@@ -48,6 +59,9 @@ $command = $connection->createCommand("SELECT * FROM siswa ");
 
 $result = $command->queryAll();
 ?>
+<div class="alert alert-success" role="alert">
+ Data Siswa yang telah mengumpulkan tugas akan di tampilkan pada tabel di bawah 
+</div>
 <table class="table table-responsive">
     <thead class="bg-blue-gradient">
         <tr>

@@ -22,7 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'value' => Url::to(['create']),
         'title' => 'TAMBAH DATA', 'class' => 'showModalButton btn btn-primary',
     ]
-);?>
+);
+?>
+
+
 
     </p>
 
