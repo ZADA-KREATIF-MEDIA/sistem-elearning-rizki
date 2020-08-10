@@ -38,8 +38,19 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => 'yii\grid\ActionColumn',
                 'header' => 'AKSI',
-                'template' => '{update}&nbsp;{delete}&nbsp;{view}',
+                'template' => '{download}&nbsp;{update}&nbsp;{delete}&nbsp;{view}',
                 'buttons' => [
+                    'download' => function ($url, $model) 
+                    {
+                        $id = $model->id_tugas;
+                        return Html::button(
+                            'DOWNLOAD',
+                            [
+                                'value' => Url::to(['unduh', 'id' => $id]),
+                                'title' => 'DOWNLOAD FILE', 'class' => 'showModalButton btn btn-info btn-sm'
+                            ]
+                        );
+                    },
                     'update' => function ($url, $model) {
                         $id = $model->id_tugas;
                         return Html::button(

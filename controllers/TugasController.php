@@ -117,6 +117,20 @@ class TugasController extends Controller
         ]);
     }
 
+    public function actionUnduh($id) 
+{ 
+    $model = $this->findModel($id);
+
+    $path = Yii::getAlias('@webroot/tugas/').$model->nama_file;
+
+    
+    
+    if (file_exists($path))
+    {
+        return Yii::$app->response->sendFile($path);
+    }
+}
+
     /**
      * Deletes an existing Tugas model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

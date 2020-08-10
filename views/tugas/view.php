@@ -18,8 +18,23 @@ $connection = Yii::$app->getDb();
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id_tugas',
-            'id_mapel',
+
+            [
+                'label'=>'NAMA PATA PELAJARAN',
+                'attribute'=>'id_mapel',
+                'value'=>function($model)
+                {
+                 return $model->mapel->nama_mapel ;
+                }
+            ],
+            [
+                'label'=>'KELAS',
+                'attribute'=>'id_kelas',
+                'value'=>function($model)
+                {
+                 return $model->mapel->id_kelas;
+                }
+            ],
             'nama_tugas',
             'tanggal_upload',
             'nama_file',
@@ -29,7 +44,7 @@ $connection = Yii::$app->getDb();
 <?php
 
 
-$command = $connection->createCommand("SELECT sis.nis,sis.nama,td.tanggal_upload,td.nama_file,td.nilai FROM tugas_detail as td JOIN siswa as sis ON td.nis=sis.nis");
+$command = $connection->createCommand("SELECT * FROM siswa ");
 
 $result = $command->queryAll();
 ?>
@@ -56,10 +71,7 @@ $result = $command->queryAll();
                     <th scope="row"><?= $no; ?></th>
                     <td><?= $data['nama']; ?></td>
                     <td><?= $data['nis']; ?></td>
-                    <td><?= $data['tanggal_upload']; ?></td>
-                    <td><?= $data['nama_file']; ?></td>
-                    <td><?= $data['nilai']; ?></td>
-                    
+                
                 </tr>
             <?php
                 $no++;
