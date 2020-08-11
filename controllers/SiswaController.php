@@ -133,14 +133,14 @@ class SiswaController extends Controller
        
         if (!Yii::$app->siswa->isGuest)
         {
-           return $this->goHome();
+          return $this->goHome();
         }
 
         $model = new LoginSiswa();
 
         if ($model->load(Yii::$app->request->post()) && $model->login())
         {
-            return $this->goBack();
+           return $this->goBack();
         }
 
       

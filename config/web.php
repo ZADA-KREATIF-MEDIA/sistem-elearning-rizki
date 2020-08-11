@@ -33,15 +33,21 @@ $config = [
             'idParam'=>'user',
             'loginUrl' => ['site/login'],
             'returnUrl'=>['site/login'],
+            'identityCookie' => [
+                'name' => '_panelUser',
+            ]
         ],
         'siswa' => [
-            'class' => 'yii\web\User',
+            'class' => 'yii\web\siswa',
             'identityClass' => 'app\models\siswa',
             'enableAutoLogin' => false,
             'enableSession'=> true,
             'idParam'=>'siswa',
             'loginUrl' => ['siswa/login'],
             'returnUrl'=>['siswa/login'],
+            'identityCookie' => [
+                'name' => '_panelSiswa',
+            ]
         ],
         'guru' => [
             'class'=>'yii\web\User',
