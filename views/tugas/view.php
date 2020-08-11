@@ -46,7 +46,7 @@ $connection = Yii::$app->getDb();
 <?=Html::button(
     'UPLOAD TUGAS SISWA',
     [
-        'value' => Url::to(['upload']),
+        'value' => Url::to(['tugas-detail/create']),
         'title' => 'UPLOAD TUGAS SISWA', 'class' => 'showModalButton btn btn-danger btn-block',
     ]
 );

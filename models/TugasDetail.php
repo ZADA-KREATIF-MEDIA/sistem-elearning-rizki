@@ -7,6 +7,7 @@ use Yii;
 /**
  * This is the model class for table "tugas_detail".
  *
+ * @property int $id
  * @property int $nis
  * @property int $id_tugas
  * @property string $tanggal_upload
@@ -32,11 +33,11 @@ class TugasDetail extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nis', 'id_tugas', 'tanggal_upload', 'nama_file', 'nilai'], 'required'],
+            [['nis', 'id_tugas', 'tanggal_upload', 'nilai'], 'required'],
             [['nis', 'id_tugas'], 'integer'],
             [['tanggal_upload'], 'safe'],
             [['nilai'], 'number'],
-            [['nama_file'], 'string', 'max' => 25],
+            [['nama_file'],'file','skipOnEmpty'=>TRUE,'extensions'=>'pdf'],
             [['nis'], 'exist', 'skipOnError' => true, 'targetClass' => Siswa::className(), 'targetAttribute' => ['nis' => 'nis']],
             [['id_tugas'], 'exist', 'skipOnError' => true, 'targetClass' => Tugas::className(), 'targetAttribute' => ['id_tugas' => 'id_tugas']],
         ];
@@ -48,10 +49,11 @@ class TugasDetail extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'nis' => 'Nis',
-            'id_tugas' => 'Id Tugas',
-            'tanggal_upload' => 'Tanggal Upload',
-            'nama_file' => 'Nama File',
+            'id' => 'ID',
+            'nis' => 'NAMA SISWA',
+            'id_tugas' => 'NAMA TUGAS',
+            'tanggal_upload' => 'TANGGAL UPLOAD',
+            'nama_file' => 'FILE TUGAS',
             'nilai' => 'Nilai',
         ];
     }
