@@ -102,6 +102,9 @@ switch ($nama_sesi)
   case "siswa":
     echo Html::a('LOGIN SISWA', ['/'], ['class'=>'btn btn-primary btn-block']);
     break;
+  case "guru":
+      echo Html::a('LOGIN GURU', ['/'], ['class'=>'btn btn-primary btn-block']);
+      break;
   default:
     "tidak nemu case yang cocok";
 } 

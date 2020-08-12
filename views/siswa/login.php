@@ -29,7 +29,7 @@ $fieldOptions2 = [
     
         <?= Html::a('<i class="fa fa-key"></i>ADMIN', ['/site/login'], ['class'=>'btn btn-app bg-navy']) ?>
         <?= Html::a('<i class="fa fa-users"></i>SISWA', ['/siswa/login'], ['class'=>'btn btn-app bg-green']) ?>
-        <?= Html::a('<i class="fa fa-suitcase"></i>GURU', ['/guru/login'], ['class'=>'btn btn-app bg-navy disabled']) ?>
+        <?= Html::a('<i class="fa fa-suitcase"></i>GURU', ['/guru/login'], ['class'=>'btn btn-app bg-navy']) ?>
         <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
 
         <?= $form

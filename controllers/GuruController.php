@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\LoginGuru;
 /**
  * GuruController implements the CRUD actions for Guru model.
  */
@@ -109,6 +109,26 @@ class GuruController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionLogin()
+    {
+       
+        if (!Yii::$app->guru->isGuest)
+        {
+          return $this->goHome();
+        }
+
+        $model = new LoginGuru();
+
+        if ($model->load(Yii::$app->request->post()) && $model->login())
+        {
+           return $this->goBack();
+        }
+
+      
+        return $this->render('login', [
+            'model' => $model,
+        ]);
+    }
     /**
      * Finds the Guru model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

@@ -60,7 +60,7 @@ class LoginGuru extends Model
     public function login()
     {
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+            return Yii::$app->guru->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
         }
         return false;
     }
@@ -73,7 +73,7 @@ class LoginGuru extends Model
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = Siswa::findByUsername($this->username);
+            $this->_user = Guru::findByUsername($this->username);
         }
 
         return $this->_user;

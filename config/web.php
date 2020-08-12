@@ -46,11 +46,11 @@ $config = [
             ]
         ],
         'guru' => [
-            'class'=>'yii\web\User',
+            'class'=>'yii\web\Guru',
             'identityClass' => 'app\models\guru',
             'enableAutoLogin' => false,
             'enableSession'=> true,
-            'loginUrl' => ['site/guru'],
+            'idParam'=>'guru',
             'identityCookie' => [
                 'name' => '_panelGuru',
             ]
