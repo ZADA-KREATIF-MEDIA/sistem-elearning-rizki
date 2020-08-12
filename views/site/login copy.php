@@ -25,13 +25,12 @@ $fieldOptions2 = [
     </div>
     
     <!-- /.login-logo -->
-    <div class="login-box-body">
-  
-  
-        <?= Html::a('<i class="fa fa-key"></i>ADMIN', ['/site/login'], ['class'=>'btn btn-app bg-green']) ?>
-        <?= Html::a('<i class="fa fa-users"></i>SISWA', ['/siswa/login'], ['class'=>'btn btn-app bg-navy']) ?>
-        <?= Html::a('<i class="fa fa-suitcase"></i>GURU', ['/guru/login'], ['class'=>'btn btn-app bg-navy disabled']) ?>
-
+    <div class="login-box-body"> 
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <?= Html::a('ADMIN', ['/site/login'], ['class'=>'btn btn-primary']) ?>
+        <?= Html::a('SISWA', ['/siswa/login'], ['class'=>'btn btn-default']) ?>
+        <?= Html::a('GURU', ['/site/guru'], ['class'=>'btn btn-default']) ?>
+</div>
         <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
 
         <?= $form
@@ -48,7 +47,7 @@ $fieldOptions2 = [
            
             <!-- /.col -->
             <div class="col-xs-12">
-                <?= Html::submitButton('LOGIN ADMINISTRATOR', ['class' => 'btn bg-green btn-block btn-flat', 'name' => 'login-button']) ?>
+                <?= Html::submitButton('MASUK SISTEM', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
             </div>
             <!-- /.col -->
         </div>

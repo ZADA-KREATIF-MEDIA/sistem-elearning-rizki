@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
+use  yii\web\Session;
 use yii\helpers\Html;
 use yii\helpers\Url;
 $this->title = 'E-LEARNING';
@@ -83,26 +84,28 @@ $jumlah_siswa = $command4->queryAll();
      
       </div>
       <!-- /.row -->
-      <?php echo Yii::$app->siswa->identity->nama; ?>
-      <?php 
-      if(Yii::$app->user->identity->level=="3")
-      {
-      ?>
-      <button class="btn btn-default btn-block"><b>USER LOGIN : (<?= Yii::$app->user->identity->username ?>)</b></button> <?= Html::a('LOGOUT ADMIN', ['/site/logout'], ['class'=>'btn btn-primary btn-block']) ?>
-      <?php
-      }
-      else if(Yii::$app->user->identity->level=="1")
-      {
-      ?>
+      <?php //echo Yii::$app->siswa->identity->nama; ?>
       
-      <button class="btn btn-default btn-block">USER LOGIN : (<?= Yii::$app->user->identity->username ?>)</button> <?= Html::a('LOGOUT SISWA', ['/site/logout'], ['class'=>'btn btn-primary btn-block']) ?>
-      <?php
-      }
-      else if(Yii::$app->user->identity->level=="2")
-      {
-      ?>
-      <button class="btn btn-danger btn-block">USER LOGIN : (<?= Yii::$app->user->identity->username ?>)</button> <?= Html::a('LOGOUT GURU', ['/site/logout'], ['class'=>'btn btn-primary']) ?>
-      <?php
-      }
-      ?>
+<?php
+$session = Yii::$app->session;
+
+foreach ($_SESSION as $session_name => $session_value)
+{
+$nama_sesi=$session_name;
+ //echo "<h4>$nama_sesi</h4>";
+}
+switch ($nama_sesi) 
+{
+  case "user":
+   echo Html::a('LOGIN ADMINISTRATOR', ['/'], ['class'=>'btn btn-primary btn-block']);
+    break;
+  case "siswa":
+    echo Html::a('LOGIN SISWA', ['/'], ['class'=>'btn btn-primary btn-block']);
+    break;
+  default:
+    "tidak nemu case yang cocok";
+} 
+?>
+
+
 </div>

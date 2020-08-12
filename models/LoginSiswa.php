@@ -48,7 +48,7 @@ class LoginSiswa extends Model
             $user = $this->getUser();
 
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Username atau Password anda salah');
+                $this->addError($attribute, 'SISWA : Username atau Password anda salah');
             }
         }
     }
@@ -69,7 +69,6 @@ class LoginSiswa extends Model
             $this->_user = Siswa::findByUsername($this->username);
         }
        
-    
         return $this->_user;
     }
 }

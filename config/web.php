@@ -28,21 +28,19 @@ $config = [
         'user' => [
             'class'=>'yii\web\User',
             'identityClass' => 'app\models\admin',
-            'enableAutoLogin' => false,
+            'enableAutoLogin' => true,
             'enableSession'=> true,
             'idParam'=>'user',
-           
             'identityCookie' => [
                 'name' => '_panelUser',
             ]
         ],
         'siswa' => [
-            'class' => 'yii\web\siswa',
+            'class' => 'yii\web\Siswa',
             'identityClass' => 'app\models\siswa',
-            'enableAutoLogin' => false,
+            'enableAutoLogin' => true,
             'enableSession'=> true,
             'idParam'=>'siswa',
-        
             'identityCookie' => [
                 'name' => '_panelSiswa',
             ]

@@ -47,7 +47,7 @@ $connection = Yii::$app->getDb();
     'UPLOAD TUGAS SISWA',
     [
         'value' => Url::to(['tugas-detail/create']),
-        'title' => 'UPLOAD TUGAS SISWA', 'class' => 'showModalButton btn btn-danger btn-block',
+        'title' => 'UPLOAD TUGAS SISWA', 'class' => 'showModalButton btn btn-success btn-block',
     ]
 );
 ?>
@@ -71,9 +71,7 @@ $command = $connection->createCommand("SELECT td.id,s.nis,s.nama, td.tanggal_upl
 
 $result = $command->queryAll();
 ?>
-<div class="alert alert-success" role="alert">
- Data Siswa yang telah mengumpulkan tugas akan di tampilkan pada tabel di bawah 
-</div>
+
 <table class="table table-responsive">
     <thead class="bg-blue-gradient">
         <tr>
