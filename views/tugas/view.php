@@ -54,8 +54,20 @@ $connection = Yii::$app->getDb();
 </br>
 <?php
 
+/*MENAMPILKAN MATA PELAJARAN YANG ADA PADA KELAS TERTENTU*/
+/*SELECT * FROM mata_pelajaran JOIN kelas ON mata_pelajaran.id_kelas=kelas.id_kelas WHERE mata_pelajaran.id_kelas=8*/
 
-$command = $connection->createCommand("SELECT * FROM siswa ");
+/*MENAMPILKAN TUGAS YANG BERADA PADA MATA KULIAH TERTENTU*/
+/*SELECT kelas.nama_kelas,kelas.jenjang, mata_pelajaran.nama_mapel,tugas.nama_tugas FROM mata_pelajaran JOIN kelas ON mata_pelajaran.id_kelas=kelas.id_kelas JOIN tugas ON mata_pelajaran.id_mapel=tugas.id_mapel WHERE mata_pelajaran.id_kelas=8;*/
+
+
+/*MENAMPILKAN SISWA YANG BERADA PADA TUGAS TERTENTU*/
+/*SELECT kelas.nama_kelas,kelas.jenjang, mata_pelajaran.nama_mapel,tugas.nama_tugas,siswa.nama FROM mata_pelajaran JOIN kelas ON mata_pelajaran.id_kelas=kelas.id_kelas JOIN tugas ON mata_pelajaran.id_mapel=tugas.id_mapel JOIN siswa ON kelas.id_kelas=siswa.id_kelas WHERE mata_pelajaran.id_kelas=8 AND tugas.id_tugas=76;*/
+
+/*QUERY BACKUP */
+/*SELECT siswa.nis,kelas.nama_kelas,kelas.jenjang, mata_pelajaran.nama_mapel,tugas.nama_tugas,siswa.nama,tugas_detail.tanggal_upload, tugas_detail.nama_file, tugas_detail.nilai FROM mata_pelajaran JOIN kelas ON mata_pelajaran.id_kelas=kelas.id_kelas JOIN tugas ON mata_pelajaran.id_mapel=tugas.id_mapel JOIN siswa ON kelas.id_kelas=siswa.id_kelas JOIN tugas_detail ON tugas.id_tugas=tugas_detail.id_tugas WHERE mata_pelajaran.id_kelas=".$model->mapel->id_kelas." AND tugas.id_tugas=".$model->id_tugas." AND tugas_detail.status=1*/
+
+$command = $connection->createCommand("SELECT td.id,s.nis,s.nama, td.tanggal_upload,td.nilai, t.nama_tugas,td.nama_file FROM tugas_detail td JOIN tugas t ON td.id_tugas=t.id_tugas JOIN siswa s ON td.nis=s.nis WHERE td.id_tugas=".$model->id_tugas."");
 
 $result = $command->queryAll();
 ?>
@@ -71,7 +83,7 @@ $result = $command->queryAll();
             <th scope="col">TANGGAL UPLOAD</th>
             <th scope="col">NAMA FILE</th>
             <th scope="col">NILAI</th>
-            <th scope="col">AKSI</th>
+            
         </tr>
         </thead>
         <tbody>
@@ -85,7 +97,27 @@ $result = $command->queryAll();
                     <th scope="row"><?= $no; ?></th>
                     <td><?= $data['nama']; ?></td>
                     <td><?= $data['nis']; ?></td>
-                
+                    <td><?= $data['tanggal_upload']; ?></td>
+                    <td><?= $data['nama_file']; ?></td>
+                    <td>
+                    <?php
+                        if($data['nilai']==0)
+                        {
+                            //$id = $data['id'];
+                            echo Html::button(
+                                'BERI NILAI',
+                                [
+                                    'value' => Url::to(['tugas-detail/update', 'id' => $data['id']]),
+                                    'title' => 'UPLOAD TUGAS SISWA', 'class' => 'showModalButton btn bg-maroon btn-sm',
+                                ]
+                            );
+                        }
+                        else
+                        {
+                            echo $data['nilai'];
+                        }
+                    ?>                  
+                   </td>
                 </tr>
             <?php
                 $no++;

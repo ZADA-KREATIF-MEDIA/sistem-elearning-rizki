@@ -33,7 +33,7 @@ class TugasDetail extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nis', 'id_tugas', 'tanggal_upload', 'nilai'], 'required'],
+            [['nis', 'id_tugas', 'tanggal_upload'], 'required'],
             [['nis', 'id_tugas'], 'integer'],
             [['tanggal_upload'], 'safe'],
             [['nilai'], 'number'],

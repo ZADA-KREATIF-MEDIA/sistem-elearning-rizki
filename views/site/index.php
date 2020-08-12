@@ -83,6 +83,7 @@ $jumlah_siswa = $command4->queryAll();
      
       </div>
       <!-- /.row -->
+      <?php echo Yii::$app->siswa->identity->nama; ?>
       <?php 
       if(Yii::$app->user->identity->level=="3")
       {

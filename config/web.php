@@ -31,8 +31,7 @@ $config = [
             'enableAutoLogin' => false,
             'enableSession'=> true,
             'idParam'=>'user',
-            'loginUrl' => ['site/login'],
-            'returnUrl'=>['site/login'],
+           
             'identityCookie' => [
                 'name' => '_panelUser',
             ]
@@ -43,8 +42,7 @@ $config = [
             'enableAutoLogin' => false,
             'enableSession'=> true,
             'idParam'=>'siswa',
-            'loginUrl' => ['siswa/login'],
-            'returnUrl'=>['siswa/login'],
+        
             'identityCookie' => [
                 'name' => '_panelSiswa',
             ]
