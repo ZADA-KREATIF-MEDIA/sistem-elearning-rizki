@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'nip')->textInput(['readOnly' => true]) ?>
+    <?= $form->field($model, 'nip')->textInput(['readOnly' => false]) ?>
 
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
 
