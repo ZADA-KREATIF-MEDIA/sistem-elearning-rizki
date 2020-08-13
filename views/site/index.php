@@ -89,26 +89,38 @@ $jumlah_siswa = $command4->queryAll();
 <?php
 $session = Yii::$app->session;
 
-foreach ($_SESSION as $session_name => $session_value)
+foreach ($session as $session_name => $session_value)
 {
 $nama_sesi=$session_name;
  //echo "<h4>$nama_sesi</h4>";
 }
-switch ($nama_sesi) 
-{
-  case "user":
-   echo Html::a('LOGIN ADMINISTRATOR', ['/'], ['class'=>'btn btn-primary btn-block']);
-    break;
-  case "siswa":
-    echo Html::a('LOGIN SISWA', ['/'], ['class'=>'btn btn-primary btn-block']);
-    break;
-  case "guru":
-      echo Html::a('LOGIN GURU', ['/'], ['class'=>'btn btn-primary btn-block']);
-      break;
-  default:
-    "tidak nemu case yang cocok";
-} 
-?>
 
+if ($nama_sesi=="__flash")
+ {
+ 
+  Yii::$app->response->redirect(Url::to(['site/logout']));
+}
+else
+{
+
+  switch ($nama_sesi) 
+  {
+    case "user":
+     echo Html::a('LOGIN ADMINISTRATOR', ['/'], ['class'=>'btn btn-primary btn-block']);
+      break;
+    case "siswa":
+      echo Html::a('LOGIN SISWA', ['/'], ['class'=>'btn btn-primary btn-block']);
+      break;
+    case "guru":
+        echo Html::a('LOGIN GURU', ['/'], ['class'=>'btn btn-primary btn-block']);
+        break;
+    default:
+      "tidak nemu case yang cocok";
+  } 
+  
+}
+
+
+?>
 
 </div>
