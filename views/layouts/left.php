@@ -49,7 +49,7 @@ $nama_sesi=$session_name;
                 'items' => [
 					['label' => 'BILAH NAVIGASI', 'options' => ['class' => 'header']],
 					['label' => 'Beranda','icon' => 'home', 'url' => ['/']],
-                    ['label' => 'Data Kelas','icon' => 'building', 'url' => ['kelas/']],
+                    ['label' => 'Data Kelas','icon' => 'building', 'url' => ['kelas/siswa']],
 					['label' => 'Data Tugas','icon' => 'list', 'url' => ['tugas/']],
                     ['label' => 'LOGOUT','icon' => 'book', 'url' => ['site/logout']],   
 					

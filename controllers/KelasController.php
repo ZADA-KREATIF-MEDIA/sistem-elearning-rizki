@@ -43,6 +43,12 @@ class KelasController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+    
+    public function actionSiswa()
+    {
+        
+        return $this->render('siswa');
+    }
 
     /**
      * Displays a single Kelas model.

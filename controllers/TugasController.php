@@ -124,7 +124,6 @@ class TugasController extends Controller
         $path = Yii::getAlias('@webroot/tugas/').$model->nama_file;
 
         
-        
         if (file_exists($path))
         {
             return Yii::$app->response->sendFile($path);

@@ -13,17 +13,27 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tugas-index">
 
-   
+<?php
+$session = Yii::$app->session;
 
-    <p>
-        <?=Html::button(
-    'TAMBAH',
-    [
-        'value' => Url::to(['create']),
-        'title' => 'TAMBAH DATA', 'class' => 'showModalButton btn btn-primary',
-    ]
-);
-?>
+foreach ($_SESSION as $session_name => $session_value)
+{
+$nama_sesi=$session_name;
+}
+if($nama_sesi=="guru" || $nama_sesi=="user") {?>
+<p>
+        <?= Html::button(
+            'TAMBAH',
+            [
+                'value' => Url::to(['create']),
+                'title' => 'TAMBAH DATA', 'class' => 'showModalButton btn btn-primary'
+            ]
+        ); ?>
+
+    </p>
+<?php } else {
+     echo "";   
+}?>
 
 
 
@@ -46,16 +56,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     'download' => function ($url, $model) 
                     {
                         $id = $model->id_tugas;
-                        return Html::button(
-                            'DOWNLOAD',
-                            [
-                                'value' => Url::to(['unduh', 'id' => $id]),
-                                'title' => 'DOWNLOAD FILE', 'class' => 'showModalButton btn btn-info btn-sm'
-                            ]
-                        );
+                        return  Html::a('DOWNLOA', ["localhost:8080".$model->nama_file.""]);
                     },
                     'update' => function ($url, $model) {
                         $id = $model->id_tugas;
+                        $session = Yii::$app->session;
+                        foreach ($_SESSION as $session_name => $session_value)
+                        {
+                        $nama_sesi=$session_name;
+                        }
+                        if($nama_sesi=="guru" || $nama_sesi=="user") {
                         return Html::button(
                             'Update',
                             [
@@ -63,8 +73,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'title' => 'UPDATE DATA', 'class' => 'showModalButton btn btn-success btn-sm'
                             ]
                         );
+                        }
                     },
                     'delete' => function ($url, $model) {
+                        $session = Yii::$app->session;
+                        foreach ($_SESSION as $session_name => $session_value)
+                        {
+                        $nama_sesi=$session_name;
+                        }
+                        if($nama_sesi=="guru" || $nama_sesi=="user") {
                         return Html::a('Delete', ['delete', 'id' => $model->id_tugas], [
                             'class' => 'btn btn-danger btn-sm',
                             'data' => [
@@ -72,6 +89,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'method' => 'post',
                             ],
                         ]);
+                        }
                     },
                     'view' => function ($url, $model) {
                         return Html::a('View', ['view', 'id' => $model->id_tugas], [

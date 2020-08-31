@@ -11,8 +11,14 @@ $this->title = 'Kelas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="kelas-index">
+<?php
+$session = Yii::$app->session;
 
-   
+foreach ($_SESSION as $session_name => $session_value)
+{
+$nama_sesi=$session_name;
+}
+if($nama_sesi=="guru" || $nama_sesi=="user") {?>
 <p>
         <?= Html::button(
             'TAMBAH',
@@ -23,7 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
         ); ?>
 
     </p>
-  
+<?php } else {
+     echo "";   
+}?>
 
     <?php Pjax::begin(); ?>
 
@@ -42,6 +50,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'buttons' => [
                     'update' => function ($url, $model) {
                         $id = $model->id_kelas;
+                        $session = Yii::$app->session;
+                        foreach ($_SESSION as $session_name => $session_value)
+                        {
+                        $nama_sesi=$session_name;
+                        }
+                        if($nama_sesi=="guru" || $nama_sesi=="user") {
                         return Html::button(
                             'Update',
                             [
@@ -49,8 +63,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'title' => 'UPDATE DATA', 'class' => 'showModalButton btn btn-success btn-sm'
                             ]
                         );
+                    }
                     },
                     'delete' => function ($url, $model) {
+                        $session = Yii::$app->session;
+                        foreach ($_SESSION as $session_name => $session_value)
+                        {
+                        $nama_sesi=$session_name;
+                        }
+                        if($nama_sesi=="guru" || $nama_sesi=="user") {
                         return Html::a('Delete', ['delete', 'id' => $model->id_kelas], [
                             'class' => 'btn btn-danger btn-sm',
                             'data' => [
@@ -58,6 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'method' => 'post',
                             ],
                         ]);
+                        }
                     },
                     'view' => function ($url, $model) {
                         return Html::a('View', ['view', 'id' => $model->id_kelas], [
