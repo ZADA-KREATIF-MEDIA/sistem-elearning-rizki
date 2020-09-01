@@ -21,8 +21,8 @@ $nama_sesi=$session_name;
 					['label' => 'BILAH NAVIGASI', 'options' => ['class' => 'header']],
 					['label' => 'Beranda','icon' => 'home', 'url' => ['/']],
                     ['label' => 'Data Kelas','icon' => 'building', 'url' => ['kelas/']],
-					['label' => 'Data Tugas','icon' => 'list', 'url' => ['tugas/']],
-					['label' => 'Data Mata Pelajaran','icon' => 'book', 'url' => ['mata-pelajaran/']],
+					['label' => 'Data Tugas','icon' => 'list', 'url' => ['tugas/admin']],
+					['label' => 'Data Mata Pelajaran','icon' => 'book', 'url' => ['mata-pelajaran/admin']],
 
                    
 					[
@@ -49,8 +49,8 @@ $nama_sesi=$session_name;
                 'items' => [
 					['label' => 'BILAH NAVIGASI', 'options' => ['class' => 'header']],
 					['label' => 'Beranda','icon' => 'home', 'url' => ['/']],
-                    ['label' => 'Data Kelas','icon' => 'building', 'url' => ['kelas/siswa']],
-					['label' => 'Data Tugas','icon' => 'list', 'url' => ['tugas/']],
+                    //['label' => 'Data Kelas','icon' => 'building', 'url' => ['kelas/siswa']],
+					['label' => 'Kelas & Tugas','icon' => 'list', 'url' => ['tugas/siswa']],
                     ['label' => 'LOGOUT','icon' => 'book', 'url' => ['site/logout']],   
 					
                 ],
@@ -63,10 +63,11 @@ $nama_sesi=$session_name;
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
 					['label' => 'BILAH NAVIGASI', 'options' => ['class' => 'header']],
-					['label' => 'Beranda','icon' => 'home', 'url' => ['/']],
-                    ['label' => 'Data Kelas','icon' => 'building', 'url' => ['kelas/']],
+                    ['label' => 'Beranda','icon' => 'home', 'url' => ['/']],
+                    ['label' => 'Mapel & Kelas','icon' => 'book', 'url' => ['mata-pelajaran/']],
+                    //['label' => 'Data Kelas','icon' => 'building', 'url' => ['kelas/']],
                     ['label' => 'Data Tugas','icon' => 'list', 'url' => ['tugas/']],
-                    ['label' => 'Data Mata Pelajaran','icon' => 'book', 'url' => ['mata-pelajaran/']],
+                   
                     ['label' => 'LOGOUT','icon' => 'book', 'url' => ['site/logout']],   
 					
                 ],

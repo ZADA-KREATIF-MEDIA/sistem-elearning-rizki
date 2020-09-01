@@ -44,6 +44,8 @@ class GuruController extends Controller
         ]);
     }
 
+    
+
     /**
      * Displays a single Guru model.
      * @param integer $id

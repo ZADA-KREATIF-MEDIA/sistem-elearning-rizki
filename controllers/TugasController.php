@@ -35,14 +35,43 @@ class TugasController extends Controller
      */
     public function actionIndex()
     {
+        $session = Yii::$app->session;
+        $nip=$_SESSION['guru'];
         $dataProvider = new ActiveDataProvider([
-            'query' => Tugas::find(),
+            'query' => Tugas::find()->joinWith(['mapel'])->where(['id_guru'=>$nip]),
         ]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
     }
+
+    public function actionSiswa()
+    {
+        
+        $dataProvider = new ActiveDataProvider([
+            'query' => Tugas::find(),
+        ]);
+
+        return $this->render('siswa', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionAdmin()
+    {
+        
+        $dataProvider = new ActiveDataProvider([
+            'query' => Tugas::find(),
+        ]);
+
+        return $this->render('Admin', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+
+
 
     /**
      * Displays a single Tugas model.

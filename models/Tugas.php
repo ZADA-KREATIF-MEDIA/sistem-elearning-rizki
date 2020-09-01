@@ -66,7 +66,7 @@ class Tugas extends \yii\db\ActiveRecord
     {
         return $this->hasOne(MataPelajaran::className(), ['id_mapel' => 'id_mapel']);
     }
-
+    
     /**
      * Gets query for [[TugasDetails]].
      *
