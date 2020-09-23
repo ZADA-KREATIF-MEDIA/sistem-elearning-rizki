@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'DATA TUGAS';
+$this->title = 'DATA TUGAS GURU';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tugas-index">
@@ -56,7 +56,7 @@ if($nama_sesi=="guru" || $nama_sesi=="user") {?>
                     'download' => function ($url, $model) 
                     {
                         $id = $model->id_tugas;
-                        return  Html::a('DOWNLOA', ["localhost:8080".$model->nama_file.""]);
+                        return  Html::a('DOWNLOAD', ["localhost:8080".$model->nama_file.""]);
                     },
                     'update' => function ($url, $model) {
                         $id = $model->id_tugas;
@@ -92,6 +92,7 @@ if($nama_sesi=="guru" || $nama_sesi=="user") {?>
                         }
                     },
                     'view' => function ($url, $model) {
+                        
                         return Html::a('View', ['view', 'id' => $model->id_tugas], [
                             'class' => 'btn btn-warning btn-sm',
                             'data' => [

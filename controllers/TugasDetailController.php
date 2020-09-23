@@ -83,7 +83,7 @@ class TugasDetailController extends Controller
                 
                
                 Yii::$app->getSession()->setFlash('success', 'Sukses Menyimpan Data');
-                return $this->redirect(['index']);
+                return $this->redirect(['/']);
             }
         }
 

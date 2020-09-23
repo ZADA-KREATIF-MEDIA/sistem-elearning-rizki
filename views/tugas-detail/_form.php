@@ -28,8 +28,23 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'tanggal_upload')->textInput(['type'=>'DATE']) ?>
 
     <?= $form->field($model, 'nama_file')->fileInput() ?>
-
-    <?= $form->field($model, 'nilai')->textInput() ?>
+    <?php 
+     $session = Yii::$app->session;
+     foreach ($_SESSION as $session_name => $session_value)
+     {
+     $nama_sesi=$session_name;
+     }
+     
+     if($nama_sesi=="guru")
+     {
+       echo  $form->field($model, 'nilai')->textInput();
+     }
+     else
+     {
+       echo "";
+     }
+      ?>
+    
 
     <div class="form-group">
         <?= Html::submitButton('UPLOAD', ['class' => 'btn btn-success']) ?>

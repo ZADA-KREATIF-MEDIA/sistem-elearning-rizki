@@ -35,10 +35,10 @@ class TugasController extends Controller
      */
     public function actionIndex()
     {
-        $session = Yii::$app->session;
-        $nip=$_SESSION['guru'];
+        //$session = Yii::$app->session;
+        //$nip=$_SESSION['guru'];
         $dataProvider = new ActiveDataProvider([
-            'query' => Tugas::find()->joinWith(['mapel'])->where(['id_guru'=>$nip]),
+            'query' => Tugas::find()//joinWith(['mapel'])->where(['id_guru'=>$nip]),
         ]);
 
         return $this->render('index', [
@@ -65,7 +65,7 @@ class TugasController extends Controller
             'query' => Tugas::find(),
         ]);
 
-        return $this->render('Admin', [
+        return $this->render('admin', [
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -111,8 +111,42 @@ class TugasController extends Controller
                 }
                 
                
-                Yii::$app->getSession()->setFlash('success', 'Sukses Menyimpan Data');
+                //Yii::$app->getSession()->setFlash('success', 'Sukses Menyimpan Data');
                 return $this->redirect(['index']);
+            }
+        }
+        else
+        {
+            return $this->renderAjax('create', [
+                'model' => $model,
+            ]);
+        }
+
+        
+      
+    }
+
+    public function actionAdminCreate()
+    {
+        $model = new Tugas();
+        
+        if ($model->load(Yii::$app->request->post())) 
+        {
+            $nama_file = UploadedFile::getInstance($model, 'nama_file');
+           
+            if ($model->validate())
+            {
+                $model->save();
+                if(!empty($nama_file))
+                {   
+                        
+                        $nama_file->saveAs(Yii::getAlias('@app/web/tugas/') .$nama_file);
+                        $model->nama_file =$nama_file;
+                        $model->save(FALSE);
+                }
+                
+                //Yii::$app->getSession()->setFlash('success', 'Sukses Menyimpan Data');
+                return $this->redirect(['tugas/admin']);
             }
         }
         else
@@ -150,12 +184,11 @@ class TugasController extends Controller
     { 
         $model = $this->findModel($id);
 
-        $path = Yii::getAlias('@webroot/tugas/').$model->nama_file;
-
+        $path = Yii::getAlias('@webroot').'/tugas/'.$model->nama_file;
         
         if (file_exists($path))
         {
-            return Yii::$app->response->sendFile($path);
+            return Yii::$app->response->xSendFile($path);
         }
     }
 

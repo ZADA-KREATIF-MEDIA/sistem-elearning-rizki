@@ -99,7 +99,13 @@ $result = $command->queryAll();
                     <td><?= $data['nama_file']; ?></td>
                     <td>
                     <?php
-                        if($data['nilai']==0)
+                        $session = Yii::$app->session;
+                        foreach ($_SESSION as $session_name => $session_value)
+                        {
+                        $nama_sesi=$session_name;
+                        }
+                        
+                        if($data['nilai']==0 && $nama_sesi=="guru")
                         {
                             //$id = $data['id'];
                             echo Html::button(

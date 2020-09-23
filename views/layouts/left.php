@@ -12,8 +12,7 @@ $nama_sesi=$session_name;
  //echo "<h4>$nama_sesi</h4>";
 }
 
-?>
-        <?php if($nama_sesi=="user") {?>
+ if($nama_sesi=="user") {?>
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
@@ -23,7 +22,6 @@ $nama_sesi=$session_name;
                     ['label' => 'Data Kelas','icon' => 'building', 'url' => ['kelas/']],
 					['label' => 'Data Tugas','icon' => 'list', 'url' => ['tugas/admin']],
 					['label' => 'Data Mata Pelajaran','icon' => 'book', 'url' => ['mata-pelajaran/admin']],
-
                    
 					[
                         'label' => 'Data Pengguna',
@@ -41,8 +39,8 @@ $nama_sesi=$session_name;
                 ],
             ]
         ) ?>
-        <?php } ?>
-        <?php if($nama_sesi=="siswa") {?>
+        <?php } else?>
+        <?php if ($nama_sesi=="siswa") {?>
             <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
@@ -56,7 +54,7 @@ $nama_sesi=$session_name;
                 ],
             ]
         ) ?>
-        <?php } ?>
+        <?php } else ?>
         <?php if($nama_sesi=="guru") {?>
             <?= dmstr\widgets\Menu::widget(
             [
@@ -65,7 +63,7 @@ $nama_sesi=$session_name;
 					['label' => 'BILAH NAVIGASI', 'options' => ['class' => 'header']],
                     ['label' => 'Beranda','icon' => 'home', 'url' => ['/']],
                     ['label' => 'Mapel & Kelas','icon' => 'book', 'url' => ['mata-pelajaran/']],
-                    //['label' => 'Data Kelas','icon' => 'building', 'url' => ['kelas/']],
+                    ['label' => 'Data Kelas','icon' => 'building', 'url' => ['kelas/']],
                     ['label' => 'Data Tugas','icon' => 'list', 'url' => ['tugas/']],
                    
                     ['label' => 'LOGOUT','icon' => 'book', 'url' => ['site/logout']],   

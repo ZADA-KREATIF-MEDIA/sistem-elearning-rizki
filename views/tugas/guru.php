@@ -8,45 +8,11 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'KELAS DAN TUGAS';
+$this->title = 'DATA TUGAS GURU';
 $this->params['breadcrumbs'][] = $this->title;
-$connection = Yii::$app->getDb();
 ?>
 <div class="tugas-index">
-<?php
 
-
-$session = Yii::$app->session;
-$nis=$_SESSION['siswa'];
-foreach ($_SESSION as $session_name => $session_value)
-{
-$nama_sesi=$session_name;
-
-}
-
-$command = $connection->createCommand("SELECT * FROM SISWA JOIN kelas ON siswa.id_kelas=kelas.id_kelas WHERE siswa.nis=".$nis."");
-
-$result = $command->queryAll();
-?>
-
-
-            <?php
-           
-            foreach ($result as $data) {
-
-            ?>
-             
-                  
-                   <h4>NIS : <?= $data['nis']; ?>, NAMA SISWA : <?= $data['nama']; ?>, KELAS : <?= $data['nama_kelas']; ?>
-                   - <?= $data['jenjang']; ?>
-                   </h4>
-                  
-                
-            <?php
-               
-            }
-            ?>
-       
 <?php
 $session = Yii::$app->session;
 
@@ -79,18 +45,9 @@ if($nama_sesi=="guru" || $nama_sesi=="user") {?>
         'layout' => '{items}{pager}{summary}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            [
-                'label'=>'MAPEL',
-                'attribute'=>'id_mapel',
-                'value'=>function($model)
-                {
-                 return $model->mapel->nama_mapel;
-                } 
-            ],
             'nama_tugas',
             'tanggal_upload',
             'nama_file',
-            
             [
                 'class' => 'yii\grid\ActionColumn',
                 'header' => 'AKSI',
@@ -136,6 +93,7 @@ if($nama_sesi=="guru" || $nama_sesi=="user") {?>
                         }
                     },
                     'view' => function ($url, $model) {
+                        
                         return Html::a('View', ['view', 'id' => $model->id_tugas], [
                             'class' => 'btn btn-warning btn-sm',
                             'data' => [

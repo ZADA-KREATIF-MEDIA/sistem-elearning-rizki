@@ -25,7 +25,7 @@ if($nama_sesi=="guru" || $nama_sesi=="user") {?>
         <?= Html::button(
             'TAMBAH',
             [
-                'value' => Url::to(['create']),
+                'value' => Url::to(['admin-create']),
                 'title' => 'TAMBAH DATA', 'class' => 'showModalButton btn btn-primary'
             ]
         ); ?>
@@ -56,7 +56,8 @@ if($nama_sesi=="guru" || $nama_sesi=="user") {?>
                     'download' => function ($url, $model) 
                     {
                         $id = $model->id_tugas;
-                        return  Html::a('DOWNLOA', ["localhost:8080".$model->nama_file.""]);
+                        
+                        return Html::a(Html::encode("UNDUH"), Url::to(['unduh', 'id' => $id]));
                     },
                     'update' => function ($url, $model) {
                         $id = $model->id_tugas;
@@ -70,7 +71,7 @@ if($nama_sesi=="guru" || $nama_sesi=="user") {?>
                             'Update',
                             [
                                 'value' => Url::to(['update', 'id' => $id]),
-                                'title' => 'UPDATE DATA', 'class' => 'showModalButton btn btn-success btn-sm'
+                                'title' => 'UPDATE DATA', 'class' => 'showModalButton btn btn-success btn-xm'
                             ]
                         );
                         }
