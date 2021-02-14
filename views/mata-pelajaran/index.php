@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(0);
 use kartik\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;

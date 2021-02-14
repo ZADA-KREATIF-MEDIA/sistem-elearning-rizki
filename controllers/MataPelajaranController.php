@@ -36,9 +36,9 @@ class MataPelajaranController extends Controller
     public function actionIndex()
     {
         $session = Yii::$app->session;
-        $nip=$_SESSION['guru'];
+       
         $dataProvider = new ActiveDataProvider([
-            'query' => MataPelajaran::find()->where(['id_guru'=>$nip]),
+            'query' => MataPelajaran::find(),
             
         ]);
 
